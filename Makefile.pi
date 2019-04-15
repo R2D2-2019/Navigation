@@ -1,0 +1,33 @@
+# .phony: build clean
+
+# WiringPiPath := ../../../libraries/WiringPi/wiringPi/
+# WiringPiSource := $(wildcard $(WiringPiPath)*.c)
+# WiringPiHeaders := $(wildcard $(WiringPiPath)*.h)
+
+# build:
+# 	arm-linux-gnueabihf-g++ -std=c++17 main.cpp $(SOURCES) $(HEADERS) -I $(WiringPiPath) -L$(WiringPiPath) -l:libwiringPi.so.2.50 -o main.exe
+
+# clean:
+# 	rm main
+
+#############################################################################
+#
+# makefile.due common settings for Arduino Due projects
+#
+# (c) Wouter van Ooijen (www.voti.nl) 2017
+#
+# This file is in the public domain.
+# 
+#############################################################################
+
+# settings for Arduino Due projects
+TARGET            ?= raspberry_pi
+
+WIRINGPI          ?= ../../../libraries/WiringPi/wiringPi
+
+# enable exeptions (disabled by default by bmptk)
+PROJECT_CPP_FLAGS += -fexceptions 
+
+# defer to the Makefile.link
+include           $(RELATIVE)/Makefile.link
+
