@@ -51,6 +51,8 @@ class Cell:
         self.neighbors = []
         self.previous = None
 
+        # TODO: Make accessability conditional
+        self.accessible = True  # Currently we only have accessible as present or not present
 
     def __setattr__(self, key, value):
         self.__dict__[key] = value
@@ -72,4 +74,12 @@ class Cell:
             self.neighbors.append([self.x, self.y + 1])
         if self.y > 0:
             self.neighbors.append([self.x, self.y - 1])
+        if self.x > 0 and self.y > 0:
+            self.neighbors.append([self.x - 1, self.y - 1])
+        if self.x < x - 1 and self.y > 0:
+            self.neighbors.append([self.x + 1, self.y - 1])
+        if self.x > 0 and self.y < y - 1:
+            self.neighbors.append([self.x - 1, self.y - 1])
+        if self.x < x - 1 and self.y < y - 1:
+            self.neighbors.append([self.x + 1, self.y + 1])
         return self.neighbors
