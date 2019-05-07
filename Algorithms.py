@@ -5,8 +5,6 @@ from math import sqrt
 
 def calculate_heuristic(neighbor, end):
     # using the raw distance
-    x = (neighbor.x, neighbor.y)
-    y = (end.x, end.y)
     distance = abs(neighbor.x - end.x) + abs(neighbor.y - end.y)
     return distance
 
