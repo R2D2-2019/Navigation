@@ -1,6 +1,3 @@
-from math import sqrt
-
-
 # TODO: Docs
 
 def calculate_heuristic(neighbor, end):
