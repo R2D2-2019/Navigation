@@ -6,6 +6,7 @@ def calculate_heuristic(neighbor, end):
     x = (neighbor.x, neighbor.y)
     y = (end.x, end.y)
     distance = sqrt(sum([(a - b) ** 2 for a, b in zip(x, y)]))
+    distance = abs(neighbor.x - end.x) + abs(neighbor.y - end.y)
     return distance
 
 
@@ -47,6 +48,7 @@ class AStar:
                 while temp.previous:
                     self.path.append([temp.x, temp.y])
                     temp = temp.previous
+                print(self.path)
                 return self.path
             indexes = self.open_set[lowestIndex].get_neighbors(self.grid.rows, self.grid.columns)
 
@@ -56,17 +58,22 @@ class AStar:
             for cell in neighbors:
                 if cell not in self.closed_set and cell.accessible:
                     temp_g = cell.g + 1
+
+                    new_path = False
+
                     if cell in self.open_set:
                         if temp_g < cell.g:
                             cell.g = temp_g
+                            new_path = True
                     else:
                         cell.g = temp_g
+                        new_path = True
 
                         self.open_set.append(cell)
-
-                    cell.h = calculate_heuristic(cell, self.end)
-                    cell.f = cell.g + cell.h
-                    cell.previous = self.open_set[lowestIndex]
+                    if new_path:
+                        cell.h = calculate_heuristic(cell, self.end)
+                        cell.f = cell.g + cell.h
+                        cell.previous = self.open_set[lowestIndex]
 
             self.closed_set.append(self.open_set[lowestIndex])
             del self.open_set[lowestIndex]
