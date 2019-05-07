@@ -27,7 +27,7 @@ class AStar:
     def solve(self):
         if self.pre_run_check():
             self.open_set.append(self.start)
-            self.run()
+            return self.run()
         else:
             return None
 
@@ -54,7 +54,6 @@ class AStar:
                 while temp.previous:
                     self.path.append([temp.x, temp.y])
                     temp = temp.previous
-                print(self.path)
                 return self.path
 
             # TODO: Shorten line
