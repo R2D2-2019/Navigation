@@ -37,21 +37,21 @@ class AStar:
 
     def run(self):
         while self.open_set:  # checking if we still have something to read from
-            lowestIndex = 0
+            lowest_index = 0
             for i in range(len(self.open_set)):
-                if self.open_set[i].f < self.open_set[lowestIndex].f:
-                    lowestIndex = i
+                if self.open_set[i].f < self.open_set[lowest_index].f:
+                    lowest_index = i
 
-            if self.open_set[lowestIndex] is self.end:
+            if self.open_set[lowest_index] is self.end:
                 self.path = []
-                temp = self.open_set[lowestIndex]
+                temp = self.open_set[lowest_index]
                 self.path.append([temp.x, temp.y])
                 while temp.previous:
                     self.path.append([temp.x, temp.y])
                     temp = temp.previous
                 print(self.path)
                 return self.path
-            indexes = self.open_set[lowestIndex].get_neighbors(self.grid.rows, self.grid.columns)
+            indexes = self.open_set[lowest_index].get_neighbors(self.grid.rows, self.grid.columns)
 
             neighbors = list()
             for index in indexes:
@@ -74,10 +74,10 @@ class AStar:
                     if new_path:
                         cell.h = calculate_heuristic(cell, self.end)
                         cell.f = cell.g + cell.h
-                        cell.previous = self.open_set[lowestIndex]
+                        cell.previous = self.open_set[lowest_index]
 
-            self.closed_set.append(self.open_set[lowestIndex])
-            del self.open_set[lowestIndex]
+            self.closed_set.append(self.open_set[lowest_index])
+            del self.open_set[lowest_index]
 
         # make case variable
         return False
