@@ -5,7 +5,6 @@ def calculate_heuristic(neighbor, end):
     # using the raw distance
     x = (neighbor.x, neighbor.y)
     y = (end.x, end.y)
-    distance = sqrt(sum([(a - b) ** 2 for a, b in zip(x, y)]))
     distance = abs(neighbor.x - end.x) + abs(neighbor.y - end.y)
     return distance
 
@@ -18,19 +17,21 @@ class AStar:
         self.start = start
         self.path = []
 
-        # Assuming to be empty, but perhaps it isn't for scheduling reasons
+        # TODO: Closed set can be converted to a priority queue or tree to speed up the process
         self.closed_set = list()
 
+        # TODO: Same as closed_set
         self.open_set = list()
 
     def solve(self):
-        # if self.pre_run_check():
-        """Debugging purposes"""
-        self.open_set.append(self.start)
-        self.run()
+        if self.pre_run_check():
+            self.open_set.append(self.start)
+            self.run()
+        else:
+            return None
 
     def pre_run_check(self):
-        if self.end is None or self.start is None or not self.open_set:
+        if self.end is None or self.start is None:
             return False
         return True
 
@@ -79,4 +80,4 @@ class AStar:
             del self.open_set[lowestIndex]
 
         # make case variable
-        print("No Match Found")
+        return False
