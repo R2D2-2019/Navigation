@@ -1,3 +1,41 @@
+import types
+
+
+# TODO: Unit tests to ensure grid class is working as expected
+
+class Grid:
+
+    # TODO: Make it a data class
+    def __init__(self, columns=0, rows=0):
+        self.columns = columns
+        self.rows = rows
+
+        # TODO: Implement the array as a numPy Array would speed it up and require a lot less memory usage.
+        # It would drop the flexibility, however we aren't doing that many unique operations with it anyway
+        self.grid = list()
+        try:
+            self.grid = [[Cell(j, i) for i in range(self.columns)] for j in range(self.rows)]
+        except MemoryError as error:
+            print(str(error) + " Too much memory is allocated using the column count of: " + str(
+                self.columns) + " and row count of: " + str(self.rows))
+
+    def __getitem__(self, lst):
+        x, y = lst
+        return self.grid[x][y]
+
+    def __setitem__(self, lst, value):
+        x, y = lst
+        self.grid[x][y].f = value
+
+    def __str__(self):
+        text = ''
+        for column in range(self.columns):
+            for row in range(self.rows):
+                text += str(self.grid[column][row].f)
+            text += '\n'
+        return text
+
+
 # TODO unit tests
 
 class Cell:
