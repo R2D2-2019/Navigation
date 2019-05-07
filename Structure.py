@@ -11,13 +11,18 @@ class Grid:
         self.rows = rows
 
         # TODO: Implement the array as a numPy Array would speed it up and require a lot less memory usage.
-        # It would drop the flexibility, however we aren't doing that many unique operations with it anyway
+        # It would drop the flexibility, however we aren't doing that many
+        # unique operations with it anyway
         self.grid = list()
         try:
-            self.grid = [[Cell(j, i) for i in range(self.columns)] for j in range(self.rows)]
+            self.grid = [[Cell(j, i) for i in range(self.columns)]
+                         for j in range(self.rows)]
         except MemoryError as error:
-            print(str(error) + " Too much memory is allocated using the column count of: " + str(
-                self.columns) + " and row count of: " + str(self.rows))
+            error_msg = str(error)
+            error_msg += " Too much memory is allocated using the column count of: "
+            error_msg += str(self.columns) + \
+                " and row count of: " + str(self.rows)
+            print(error_msg)
 
     def __getitem__(self, lst):
         x, y = lst

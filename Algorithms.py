@@ -1,5 +1,4 @@
 # TODO: Docs
-
 def calculate_heuristic(neighbor, end):
     # using the raw distance
     distance = abs(neighbor.x - end.x) + abs(neighbor.y - end.y)
@@ -16,7 +15,8 @@ class AStar:
         self.start = start
         self.path = []
 
-        # TODO: Closed set can be converted to a priority queue or tree to speed up the process
+        # TODO: Closed set can be converted to a priority queue or tree to
+        # speed up the process
         self.closed_set = list()
 
         # TODO: Same as closed_set
@@ -58,7 +58,8 @@ class AStar:
                 return self.path
 
             # TODO: Shorten line
-            indexes = self.open_set[lowest_index].get_neighbors(self.grid.rows, self.grid.columns)
+            indexes = self.open_set[lowest_index].get_neighbors(
+                self.grid.rows, self.grid.columns)
 
             neighbors = list()
             for index in indexes:
