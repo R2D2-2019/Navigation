@@ -1,6 +1,8 @@
 from math import sqrt
 
 
+# TODO: Docs
+
 def calculate_heuristic(neighbor, end):
     # using the raw distance
     x = (neighbor.x, neighbor.y)
@@ -8,6 +10,8 @@ def calculate_heuristic(neighbor, end):
     distance = abs(neighbor.x - end.x) + abs(neighbor.y - end.y)
     return distance
 
+
+# TODO: Docs
 
 class AStar:
     # TODO: Make it a data class
@@ -23,6 +27,8 @@ class AStar:
         # TODO: Same as closed_set
         self.open_set = list()
 
+    # TODO: Docs
+
     def solve(self):
         if self.pre_run_check():
             self.open_set.append(self.start)
@@ -30,10 +36,14 @@ class AStar:
         else:
             return None
 
+    # TODO: Docs
+
     def pre_run_check(self):
         if self.end is None or self.start is None:
             return False
         return True
+
+    # TODO: Docs
 
     def run(self):
         while self.open_set:  # checking if we still have something to read from
@@ -51,6 +61,8 @@ class AStar:
                     temp = temp.previous
                 print(self.path)
                 return self.path
+
+            # TODO: Shorten line
             indexes = self.open_set[lowest_index].get_neighbors(self.grid.rows, self.grid.columns)
 
             neighbors = list()

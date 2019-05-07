@@ -38,8 +38,9 @@ class Grid:
 
 # TODO unit tests
 
+# TODO: Docs
 class Cell:
-
+    # TODO: Docs
     # TODO: Make it a data class
     def __init__(self, x, y, f=0, g=0, h=0):
         self.f = f
@@ -54,14 +55,17 @@ class Cell:
         # TODO: Make accessability conditional
         self.accessible = True  # Currently we only have accessible as present or not present
 
+    # TODO: Docs
     def __setattr__(self, key, value):
         self.__dict__[key] = value
 
+    # TODO: Docs
     def __getattr__(self, key):
         if key in ['f', 'g', 'h']:
             return self['key']
         return False  # make it either an exception or error
 
+    # TODO: Docs
     def get_neighbors(self, x, y):
 
         # TODO: Loop-based not if statement based
