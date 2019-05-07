@@ -1,6 +1,3 @@
-import types
-
-
 # TODO: Unit tests to ensure grid class is working as expected
 
 class Grid:
@@ -21,7 +18,7 @@ class Grid:
             error_msg = str(error)
             error_msg += " Too much memory is allocated using the column count of: "
             error_msg += str(self.columns) + \
-                " and row count of: " + str(self.rows)
+                         " and row count of: " + str(self.rows)
             print(error_msg)
 
     def __getitem__(self, lst):
