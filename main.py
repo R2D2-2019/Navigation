@@ -3,22 +3,20 @@ from sys import platform
 import signal
 
 from client.comm import Comm
-from modules.template.module.mod import Module
+from module.module import Navigation
 
 should_stop = False
 
-
 def main():
     print("Starting application...\n")
-    module = Module(Comm())
+    nav = Navigation(Comm())
     print("Module created...")
 
     while not should_stop:
-        module.process()
+        nav.process()
         sleep(0.05)
 
-    module.stop()
-
+    nav.stop()
 
 def stop(signal, frame):
     global should_stop
